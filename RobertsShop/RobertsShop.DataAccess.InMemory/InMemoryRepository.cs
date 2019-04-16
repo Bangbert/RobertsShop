@@ -1,4 +1,5 @@
-﻿using RobertsShop.Core.Models;
+﻿using RobertsShop.Core.Contracts;
+using RobertsShop.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace RobertsShop.DataAccess.InMemory
 {
-    public class InMemoryRepository<T> where T : BaseEntity
+    public class InMemoryRepository<T> : IRepository<T> where T : BaseEntity
     {
         ObjectCache cache = MemoryCache.Default;
         List<T> items;
@@ -33,6 +34,7 @@ namespace RobertsShop.DataAccess.InMemory
             items.Add(t);
 
         }
+        
 
         public void Update(T t)
         {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using RobertsShop.Core.Contracts;
 using RobertsShop.Core.Models;
 using RobertsShop.Core.ViewModels;
 using RobertsShop.DataAccess.InMemory;
@@ -12,14 +13,14 @@ namespace RobertsShop.WebUI.Controllers
     public class ProductManagerController : Controller
     {
 
-        InMemoryRepository<Product> context;
-        InMemoryRepository<ProductCategory> productCategories;
+        IRepository<Product> context;
+        IRepository<ProductCategory> productCategories;
 
 
-        public ProductManagerController()
+        public ProductManagerController(IRepository<Product> _context, IRepository<ProductCategory> _productCategories)
         {
-            context = new InMemoryRepository<Product>();
-            productCategories =  new InMemoryRepository<ProductCategory>();
+            context = _context;
+            productCategories = _productCategories;
 
 
         }
