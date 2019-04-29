@@ -11,5 +11,6 @@ namespace RobertsShop.Core.Contracts
         T Find(string Id);
         void Insert(T t);
         void Update(T t);
+       
     }
 }
