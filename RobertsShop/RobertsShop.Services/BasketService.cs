@@ -11,7 +11,7 @@ using System.Web;
 
 namespace RobertsShop.Services
 {
-    class BasketService : IBasketService
+    public class BasketService : IBasketService
     {
         IRepository<Product> productContext;
         IRepository<Basket> basketContext;

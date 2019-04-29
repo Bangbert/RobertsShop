@@ -12,6 +12,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using RobertsShop.WebUI.Models;
 
+
 namespace RobertsShop.WebUI
 {
     public class EmailService : IIdentityMessageService
