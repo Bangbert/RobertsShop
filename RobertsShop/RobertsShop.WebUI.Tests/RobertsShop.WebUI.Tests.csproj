@@ -25,6 +25,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -83,8 +84,11 @@
     <Reference Include="System.Net.Http.WebRequest" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
+    <Compile Include="Controllers\BasketControllerTest.cs" />
+    <Compile Include="Mocks\MockContext.cs" />
+    <Compile Include="Mocks\MockHttpContext.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
@@ -93,6 +97,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\RobertsShop.Core\RobertsShop.Core.csproj">
+      <Project>{e0973934-85f5-4609-9ffc-1bc06f58b496}</Project>
+      <Name>RobertsShop.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RobertsShop.Services\RobertsShop.Services.csproj">
+      <Project>{D8B3D312-264E-430F-BCD7-B093432C86AF}</Project>
+      <Name>RobertsShop.Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RobertsShop.WebUI\RobertsShop.WebUI.csproj">
       <Project>{37954566-6F6A-421F-87C3-4243DFEC9B20}</Project>
       <Name>RobertsShop.WebUI</Name>
