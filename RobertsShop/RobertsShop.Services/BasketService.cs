@@ -158,6 +158,14 @@ namespace RobertsShop.Services
             return model;
             
         }
+        public void ClearBasket(HttpContextBase _httpContext)
+        {
+            Basket basket = GetBasket(_httpContext, false);
+            basket.BasketItems.Clear();
+            basketContext.Commit();
+
+
+        }
 
     }
 }
