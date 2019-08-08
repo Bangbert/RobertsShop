@@ -10,11 +10,13 @@ namespace RobertsShop.WebUI.Controllers
 {
     public class BasketController : Controller
     {
+        IRepository<Customer> customers;
         IBasketService basketService;
         IOrderService orderService;
 
-        public BasketController(IBasketService _basketService, IOrderService _orderService)
+        public BasketController(IBasketService _basketService, IOrderService _orderService, IRepository<Customer> _customers)
         {
+            customers = _customers;
             basketService = _basketService;
             orderService = _orderService;
         }
@@ -43,17 +45,40 @@ namespace RobertsShop.WebUI.Controllers
 
             return PartialView(basketSummery);
         }
-
+        [Authorize]
         public ActionResult Checkout()
         {
-            return View();
+            Customer customer = customers.Collection().FirstOrDefault(c => c.Email == User.Identity.Name);
+
+            if (customer != null)
+            {
+                Order order = new Order()
+                {
+                    Email = customer.Email,
+                    City = customer.City,
+                    State = customer.State,
+                    Street = customer.Street,
+                    FirstName = customer.FirstName,
+                    Surname = customer.LastName,
+                    ZipCode = customer.ZipCode
+                };
+                return View(order);
+
+
+            }
+            else
+            {
+                return RedirectToAction("Error");
+            }
+
         }
         [HttpPost]
+        [Authorize]
         public ActionResult Checkout(Order _order)
         {
             var basketItems = basketService.GetBasketItems(this.HttpContext);
             _order.Orderstatus = "Order Created";
-
+            _order.Email = User.Identity.Name;
             //Process payment
 
             _order.Orderstatus = "Payment Processed";
