@@ -11,6 +11,7 @@ using RobertsShop.DataAccess.InMemory;
 
 namespace RobertsShop.WebUI.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ProductManagerController : Controller
     {
 
